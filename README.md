@@ -8,7 +8,7 @@ Based on [gRPC](https://grpc.io/) and [gin](https://gin-gonic.com/).
 
 ## Use
 
-1. clone
+1. Clone
 
 ```bash
 git clone --depth 1 --branch main https://github.com/cbpantianya/tiant-micro.git <project-name>
@@ -16,11 +16,21 @@ cd <project-name>
 go mod tidy
 ```
 
-2. rename
+2. Rename
 
 Rename all `config.ex.toml` to `config.toml`.
 
+## Run 
 
+### Docker
+Make sure you are in the root path.
+
+example:
+
+```bash
+docker build -t user:latest -f ./app/rpc/user/dockerfile .
+```
+There is a dockerfile template in `app/rpc/user/dockerfile`.
 
 
 
