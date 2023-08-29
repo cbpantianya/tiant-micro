@@ -1,0 +1,18 @@
+[app]
+name = "user"
+version = "v1.0-pre1"
+
+[engine]
+address = "0.0.0.0"
+port = 9844
+
+[database]
+address = "127.0.0.1"
+port = 3306
+username = "root"
+password = "k8s666k3s999"
+dbname = "tiant-micro"
+
+[whitelist]
+enable = true
+source = ["192.168.0.0/24"]
