@@ -1,4 +1,10 @@
+
 # tiant-micro
+
+<p align="center">
+<img align="center" width="120px" src="./doc/logo.png">
+</p>
+
 A lightweight micro service framework modeled after [go-zero](https://go-zero.dev/).
 
 Based on [gRPC](https://grpc.io/) and [gin](https://gin-gonic.com/).
