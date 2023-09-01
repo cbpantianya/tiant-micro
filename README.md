@@ -15,6 +15,27 @@ Based on [gRPC](https://grpc.io/) and [gin](https://gin-gonic.com/).
 2. Breaker
 3. Load Balancing(Will NOT support. Please use k8s or other load balancing system.)
 
+## Project structure
+
+```
+.
+├── go.mod
+├── app
+│   └── rpc
+│       └── user
+│           └── common
+│           └── etc
+│           └── user.go
+│   └── api
+│       └── common
+│       └── pb
+│       └── api.go
+├── pkg
+```
+`common`：service/server directory.
+`etc`: config file directory.
+`pkg`: common package directory.
+
 ## Requirements
 - Golang >= 1.20
 
