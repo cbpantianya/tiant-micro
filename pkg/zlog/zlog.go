@@ -27,7 +27,9 @@ func NewDevZLogger() (sugar *zap.SugaredLogger, err error) {
 	)
 
 	sugar = zap.New(core, zap.AddCaller()).Sugar()
-	defer sugar.Sync()
+	defer func ()  {
+		err = sugar.Sync()
+	}()
 	sugar.Infow("ZLog initialization successful",
 		zap.String("text", "zlog"),
 	)
@@ -48,7 +50,9 @@ func NewProdZLogger(addr string, port int, topic string, partition int) (sugar *
 	)
 	
 	sugar = zap.New(core, zap.AddCaller()).Sugar()
-	defer sugar.Sync()
+	defer func ()  {
+		err = sugar.Sync()
+	}()
 	sugar.Infow("ZLog initialization successful",
 		zap.String("text", "zlog"),
 	)
