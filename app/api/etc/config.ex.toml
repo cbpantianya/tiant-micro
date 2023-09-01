@@ -4,8 +4,5 @@ version = "v1.0-pre1"
 
 [engine]
 address = "0.0.0.0"
-port = 8080
+port = 8880
 
-[whitelist]
-enable = true
-source = ["192.168.0.0/24"]
