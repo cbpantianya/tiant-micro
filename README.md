@@ -33,7 +33,9 @@ Based on [gRPC](https://grpc.io/) and [gin](https://gin-gonic.com/).
 ├── pkg
 ```
 `common`：service/server directory.
+
 `etc`: config file directory.
+
 `pkg`: common package directory.
 
 ## Requirements
