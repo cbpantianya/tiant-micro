@@ -11,7 +11,7 @@ Based on [gRPC](https://grpc.io/) and [gin](https://gin-gonic.com/).
 
 ---
 
-Load Balancing(Will NOT support. Please use k8s or other load balancing system.)
+Load Balancing: Will NOT Support. Please use k8s or other load balancing system.
 
 
 ## Project structure
