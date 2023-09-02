@@ -12,9 +12,9 @@ type Config struct {
 
 	Engine struct {
 		Address string `toml:"address"`
-		Port    int `toml:"port"`
+		Port    int    `toml:"port"`
+		Limite  int    `toml:"limite"`
 	} `toml:"engine"`
-
 }
 
 func NewConfig(path string) (cfg *Config, err error) {

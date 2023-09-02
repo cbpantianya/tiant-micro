@@ -20,8 +20,8 @@ func NewServer() (server *Server) {
 	server = &Server{
 		Engine: gin.New(),
 		Svc: svc.NewSVC(),
-		Limiter: rate.NewLimiter(100, 100),
 	}
+	server.Limiter = rate.NewLimiter(rate.Limit(server.Svc.Config.Engine.Limite), server.Svc.Config.Engine.Limite)
 	server.Engine.Use(middleware.Logger(server.Svc.Logger),middleware.Limiter(server.Limiter),gin.Recovery())
 	return
 }
