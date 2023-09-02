@@ -9,11 +9,10 @@ A lightweight micro service framework modeled after [go-zero](https://go-zero.de
 
 Based on [gRPC](https://grpc.io/) and [gin](https://gin-gonic.com/).
 
-## TODO
+---
 
-1. Limiter
-2. Breaker
-3. Load Balancing(Will NOT support. Please use k8s or other load balancing system.)
+Load Balancing(Will NOT support. Please use k8s or other load balancing system.)
+
 
 ## Project structure
 
