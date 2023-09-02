@@ -10,6 +10,7 @@ import (
 )
 
 func HealthService(s *server.Server) gin.HandlerFunc {
+	time.Sleep(1 * time.Second)
 	return func(gtx *gin.Context) {
 		trace := gtx.GetString("trace_id")
 		gtx.JSON(resp.SuccessResp(model.HealthResp{

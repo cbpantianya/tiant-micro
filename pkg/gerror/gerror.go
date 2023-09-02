@@ -11,17 +11,30 @@ import (
 type GError struct {
 	Msg     string
 	Code    int
+	HCode   int
 	Inner   error
 	HttpMsg string
 }
 
 var Errs = map[int]GError{
+	42900: ToManyRequest(nil),
 	50000: InnerError(nil),
 	50001: NoTraceID(nil),
 }
 
+func ToManyRequest(err error) GError {
+	return GError{
+		HCode:   429,
+		Msg:     "too many requests",
+		Code:    42900,
+		Inner:   err,
+		HttpMsg: "too many requests",
+	}
+}
+
 func NoTraceID(err error) GError {
 	return GError{
+		HCode:   500,
 		Msg:     "trace_id not found",
 		Code:    50001,
 		Inner:   err,
@@ -31,6 +44,7 @@ func NoTraceID(err error) GError {
 
 func InnerError(err error) GError {
 	return GError{
+		HCode:   500,
 		Msg:     "unexpected error",
 		Code:    50000,
 		Inner:   err,
@@ -41,10 +55,6 @@ func InnerError(err error) GError {
 func (e GError) Error() string {
 	bt, _ := json.Marshal(e)
 	return string(bt)
-}
-
-func (e GError) HttpError() string {
-	return e.HttpMsg
 }
 
 func (e GError) RError() error {
@@ -58,7 +68,7 @@ func Unmarshal(msg string, logger *zap.SugaredLogger) *GError {
 	// Example: rpc error: code = Unknown desc = {"Msg":"trace_id not found","Code":50001,"Inner":null,"HttpMsg":"inner error"}
 	regexp := regexp.MustCompile(`desc = (.*)`)
 	msg = regexp.FindStringSubmatch(msg)[1]
-	
+
 	err := json.Unmarshal([]byte(msg), &e)
 	//
 	if err != nil {

@@ -21,7 +21,7 @@ func UserService(s *server.Server) gin.HandlerFunc {
 		if err != nil {
 			// err to string
 			ge := gerror.Unmarshal(err.Error(), s.Svc.Logger)
-			gtx.JSON(resp.ErrorResp(ge.Code,ge.HttpMsg, trace))
+			gtx.JSON(resp.ErrorResp(200, ge.Code,ge.HttpMsg, trace))
 			return
 		}
 

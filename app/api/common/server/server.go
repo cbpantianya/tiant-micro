@@ -6,10 +6,12 @@ import (
 	"tiant-micro/pkg/middleware"
 
 	"github.com/gin-gonic/gin"
+	"golang.org/x/time/rate"
 )
 
 type Server struct {
 	Engine *gin.Engine
+	Limiter *rate.Limiter
 	Svc    *svc.ServiceContext
 }
 
@@ -18,8 +20,9 @@ func NewServer() (server *Server) {
 	server = &Server{
 		Engine: gin.New(),
 		Svc: svc.NewSVC(),
+		Limiter: rate.NewLimiter(100, 100),
 	}
-	server.Engine.Use(middleware.Logger(server.Svc.Logger),gin.Recovery())
+	server.Engine.Use(middleware.Logger(server.Svc.Logger),middleware.Limiter(server.Limiter),gin.Recovery())
 	return
 }
 

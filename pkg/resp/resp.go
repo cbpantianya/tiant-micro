@@ -14,8 +14,11 @@ func SuccessResp(data interface{}, traceID string) (code int, resp interface{}) 
 	}
 }
 
-func ErrorResp(ecode int, msg string, traceID string) (code int, resp interface{}) {
-	return 200, map[string]string{
+func ErrorResp(hcode int,ecode int, msg string, traceID string) (code int, resp interface{}) {
+	if hcode == 0 {
+		hcode = http.StatusOK
+	}
+	return hcode, map[string]string{
 		"code": fmt.Sprintf("%d", ecode),
 		"msg": msg,
 		"data": "",
